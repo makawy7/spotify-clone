@@ -1,12 +1,14 @@
 import { forwardRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>
+export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ children, className, disabled, ...props }, ref) => {
+  ({ className, children, disabled, type = 'button', ...props }, ref) => {
     return (
       <button
+        type={type}
+        {...props}
         disabled={disabled}
         ref={ref}
         className={twMerge(
