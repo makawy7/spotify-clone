@@ -8,6 +8,9 @@ import { twMerge } from 'tailwind-merge'
 import Button from './Button'
 import useAuthModal from '@/hooks/useAuthModal'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
+import { useUser } from '@/hooks/useUser'
+import { FaUserAlt } from 'react-icons/fa'
+import toast from 'react-hot-toast'
 
 type HeaderProps = {
   children: React.ReactNode
@@ -18,10 +21,19 @@ const Header: React.FC<HeaderProps> = ({ children, className = '' }) => {
   const { onOpen } = useAuthModal()
 
   const supabaseClient = useSupabaseClient()
+  const { user } = useUser()
 
-  const handleLogout = () => {
-    console.log('handle logout')
+  const handleLogout = async () => {
+    const { error } = await supabaseClient.auth.signOut()
+    router.refresh()
+
+    if (error) {
+      toast.error(error.message)
+    } else {
+      toast.success('Logged out!')
+    }
   }
+
   return (
     <div
       className={twMerge(
@@ -52,14 +64,30 @@ const Header: React.FC<HeaderProps> = ({ children, className = '' }) => {
             <BiSearch size={20} />
           </button>
         </div>
-        <div>
-          <Button onClick={onOpen} className="text-white">
-            Sign Up
-          </Button>
-          <Button onClick={onOpen} className="bg-white font-bold">
-            Login
-          </Button>
-        </div>
+        {user ? (
+          <div className="flex items-center justify-center gap-x-2">
+            <Button onClick={handleLogout} className="bg-white font-bold">
+              Logout
+            </Button>
+            <Button
+              onClick={() => {
+                router.push('/account')
+              }}
+              className="bg-green-400 p-3 font-bold"
+            >
+              <FaUserAlt />
+            </Button>
+          </div>
+        ) : (
+          <div>
+            <Button onClick={onOpen} className="text-white">
+              Sign Up
+            </Button>
+            <Button onClick={onOpen} className="bg-white font-bold">
+              Login
+            </Button>
+          </div>
+        )}
       </div>
       {children}
     </div>
