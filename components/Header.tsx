@@ -7,6 +7,7 @@ import { RxCaretLeft, RxCaretRight } from 'react-icons/rx'
 import { twMerge } from 'tailwind-merge'
 import Button from './Button'
 import useAuthModal from '@/hooks/useAuthModal'
+import { useSupabaseClient } from '@supabase/auth-helpers-react'
 
 type HeaderProps = {
   children: React.ReactNode
@@ -15,6 +16,9 @@ type HeaderProps = {
 const Header: React.FC<HeaderProps> = ({ children, className = '' }) => {
   const router = useRouter()
   const { onOpen } = useAuthModal()
+
+  const supabaseClient = useSupabaseClient()
+
   const handleLogout = () => {
     console.log('handle logout')
   }
