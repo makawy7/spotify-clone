@@ -21,7 +21,7 @@ const Header: React.FC<HeaderProps> = ({ children, className = '' }) => {
   const { onOpen } = useAuthModal()
 
   const supabaseClient = useSupabaseClient()
-  const { user } = useUser()
+  const { user, isLoading } = useUser()
 
   const handleLogout = async () => {
     const { error } = await supabaseClient.auth.signOut()
@@ -64,30 +64,31 @@ const Header: React.FC<HeaderProps> = ({ children, className = '' }) => {
             <BiSearch size={20} />
           </button>
         </div>
-        {user ? (
-          <div className="flex items-center justify-center gap-x-2">
-            <Button onClick={handleLogout} className="bg-white font-bold">
-              Logout
-            </Button>
-            <Button
-              onClick={() => {
-                router.push('/account')
-              }}
-              className="bg-green-400 p-3 font-bold"
-            >
-              <FaUserAlt />
-            </Button>
-          </div>
-        ) : (
-          <div>
-            <Button onClick={onOpen} className="text-white">
-              Sign Up
-            </Button>
-            <Button onClick={onOpen} className="bg-white font-bold">
-              Login
-            </Button>
-          </div>
-        )}
+        {isLoading ||
+          (user ? (
+            <div className="flex items-center justify-center gap-x-2">
+              <Button onClick={handleLogout} className="bg-white font-bold">
+                Logout
+              </Button>
+              <Button
+                onClick={() => {
+                  router.push('/account')
+                }}
+                className="bg-green-400 p-3 font-bold"
+              >
+                <FaUserAlt />
+              </Button>
+            </div>
+          ) : (
+            <div>
+              <Button onClick={onOpen} className="text-white">
+                Sign Up
+              </Button>
+              <Button onClick={onOpen} className="bg-white font-bold">
+                Login
+              </Button>
+            </div>
+          ))}
       </div>
       {children}
     </div>
