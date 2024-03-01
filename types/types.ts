@@ -9,6 +9,10 @@ export type Song = {
     song_path: string
 }
 
+export type favSongs = {
+    song_id: number;
+}
+
 export type UserDetails = {
     id: string
     first_name: string
