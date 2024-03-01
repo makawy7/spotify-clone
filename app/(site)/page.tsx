@@ -14,7 +14,11 @@ export default async function Home() {
           <h1 className="text-3xl font-bold">Welcome back</h1>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          <ListItem />
+          <ListItem
+            name="Liked Songs"
+            href="/liked"
+            image="/images/liked.png"
+          />
         </div>
       </Header>
       <div className="mb-7 mt-2 space-y-4 px-6">

@@ -1,5 +1,5 @@
 import getSongsByTitle from '@/actions/getSongsByTitle'
-import getUserFavSongs from '@/actions/getUserFavSongs'
+import getUserLikedSongsIds from '@/actions/getUserLikedSongsIds'
 import Header from '@/components/Header'
 import SearchContent from '@/components/SearchContent'
 import SearchInput from '@/components/SearchInput'
@@ -12,7 +12,7 @@ export const revalidate = 0
 
 const page = async ({ searchParams }: SearchProps) => {
   const songs = await getSongsByTitle(searchParams.title)
-  const favSongs = await getUserFavSongs()
+  const favSongs = await getUserLikedSongsIds()
   return (
     <div className="h-full w-full overflow-hidden overflow-y-auto rounded-lg bg-neutral-900">
       <Header className="from-bg-neutral-900">
