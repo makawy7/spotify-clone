@@ -35,17 +35,7 @@ const SideBar: React.FC<SidebarProps> = ({ children, songs }) => {
   )
   return (
     <div className="flex h-full">
-      <div
-        className="
-                hidden
-                h-full
-                w-[300px]
-                flex-col
-                gap-y-2
-                rounded-sm
-                p-2
-                md:flex"
-      >
+      <div className="hidden h-full w-[300px] flex-col gap-y-2 rounded-sm p-2 md:flex">
         <Box>
           <div className=" space-y-4 rounded-lg bg-neutral-900 px-5 py-4">
             {routes.map((item) => (

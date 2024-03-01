@@ -145,15 +145,7 @@ const UploadModal = () => {
         <Button
           disabled={isLoading}
           type="submit"
-          className="
-              w-full
-            bg-green-500
-              text-base
-              font-bold
-            text-black
-              disabled:cursor-not-allowed
-              disabled:opacity-50
-            "
+          className="w-full bg-green-500 text-base font-bold text-black disabled:cursor-not-allowed disabled:opacity-50"
         >
           Create
         </Button>

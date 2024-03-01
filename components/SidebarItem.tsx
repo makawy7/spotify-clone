@@ -19,23 +19,12 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
     <Link
       href={href}
       className={twMerge(
-        `
-        flex
-        gap-x-4
-        items-center
-        w-full
-        text-md
-        font-medium
-        cursor-pointer
-        text-neutral-400
-        hover:text-white
-        transition
-        `,
-        active && 'text-white'
+        `text-md flex w-full cursor-pointer items-center gap-x-4 font-medium text-neutral-400 transition hover:text-white`,
+        active && 'text-white',
       )}
     >
       <Icon size={26} />
-      <div className="truncate w-full">{label}</div>
+      <div className="w-full truncate">{label}</div>
     </Link>
   )
 }

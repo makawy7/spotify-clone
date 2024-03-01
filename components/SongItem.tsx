@@ -12,34 +12,8 @@ type SongItemProps = {
 const SongItem: React.FC<SongItemProps> = ({ song }) => {
   const imagePath = useLoadImage(song)
   return (
-    <div
-      className="
-        group
-        relative
-        flex
-        w-full
-        cursor-pointer
-        flex-col
-        justify-center
-        gap-y-2   
-        rounded-md
-        bg-neutral-400/5
-        p-3
-        font-semibold
-        transition
-        hover:bg-neutral-400/10
-  "
-    >
-      <div
-        className="
-            relative
-            aspect-square
-            h-full
-            w-full
-            overflow-hidden
-            rounded-md
-      "
-      >
+    <div className="group relative flex w-full cursor-pointer flex-col justify-center gap-y-2 rounded-md bg-neutral-400/5 p-3 font-semibold transition hover:bg-neutral-400/10">
+      <div className="relative aspect-square h-full w-full overflow-hidden rounded-md">
         <Image src={imagePath || '/images/liked.png'} alt="song" fill />
       </div>
       <div className="space-y-1 pt-2">
